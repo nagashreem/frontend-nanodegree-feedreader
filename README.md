@@ -30,7 +30,8 @@ For details about the tests and their implementation, review the feedreader.js f
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md). The starter code was provided by Udacity for _all_ Udacity students. The game logic has been implemented by Nagashree Mylaraiah. 
+This repository contains a combination of starter code from Udacity and test code written by Nagashree Mylaraiah.
+Since this project is the product of a GWG Udacity FEND Project, pull requests will most likely not be accepted until further notice. 
 
 ## License
 
