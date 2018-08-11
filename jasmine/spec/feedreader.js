@@ -12,12 +12,12 @@ $(function() {
     /*This test suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
-    describe('RSS Feeds', function() {
+    describe('RSS Feeds', () => {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty. 
          */
-        it('are defined', function() {
+        it('are defined', () => {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
@@ -27,7 +27,7 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-         it('have URLs defined', function(){
+         it('have URLs defined', () => {
             allFeeds.forEach(function(feed){
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).not.toBe(0);
@@ -39,7 +39,7 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-        it('have names defined', function(){
+        it('have names defined', () => {
             allFeeds.forEach(function(feed){
                 expect(feed.name).toBeDefined();
                 expect(feed.name).not.toBe('');
@@ -50,16 +50,16 @@ $(function() {
 
     /* This test suite is all about the menu in our application */
 
-    describe('The menu', function(){
+    describe('The menu', () => {
 
-        let body = $('body');
-        let event = 'click';
-        let menu = $('.menu-icon-link');
+        const body = $('body');
+        const event = 'click';
+        const menu = $('.menu-icon-link');
         
         /* This test ensures the menu element is
          * hidden by default. 
          */
-        it('is hidden by default', function(){
+        it('is hidden by default', () => {
             expect(body.hasClass('menu-hidden')).toBe(true);
         });
 
@@ -68,7 +68,7 @@ $(function() {
           * checks if the menu is displayed when
           * clicked and is hidden when clicked again.
           */
-        it('changes visibility when menu icon is clicked', function(){
+        it('changes visibility when menu icon is clicked', () => {
             menu.trigger(event);
             expect(body.hasClass('menu-hidden')).toBe(false);               
             menu.trigger(event);
@@ -79,10 +79,10 @@ $(function() {
 
     /* This test suite all about the Initial Entries in our application */
 
-    describe('Initial Entries', function(){
+    describe('Initial Entries', () => {
  
         beforeEach(function(done){
-            loadFeed(0,function(){
+            loadFeed(0,() => {
                 done();
             });
         });
@@ -93,8 +93,8 @@ $(function() {
          */
 
         it('should have atleast a single entry element within the feed container', function(done){
-            let entries = $('.entry-link');
-            expect(entries.length).not.toEqual(0);
+            const feed = $('.feed .entry');
+            expect(feed.length).not.toEqual(0);
             done();
         });
     });
@@ -102,15 +102,15 @@ $(function() {
     /* This test suite is all about the Feed Selection in our application
      */
 
-    describe('New Feed Selection', function(){
+    describe('New Feed Selection', () => {
 
         let existingFeedEntry, newFeedEntry;
 
         beforeEach(function(done){
-            loadFeed(1, function(){
-                newFeedEntry = document.querySelector('.entry-link').href;
-                loadFeed(0, function(){
-                    existingFeedEntry = document.querySelector('.entry-link').href;   
+            loadFeed(1, () => {
+                newFeedEntry = document.querySelector('.feed').innerHTML;
+                loadFeed(0, () => {
+                    existingFeedEntry = document.querySelector('.feed').innerHTML;   
                     done();
                 });
             });
@@ -125,7 +125,6 @@ $(function() {
          */
 
         it('ensures that the content actually changes when a new feed is loaded', function(done){
-            let entries = $('.entry-link');
             expect(existingFeedEntry).not.toEqual(newFeedEntry);
             done();
         });
