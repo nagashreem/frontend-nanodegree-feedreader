@@ -107,10 +107,10 @@ $(function() {
         let existingFeedEntry, newFeedEntry;
 
         beforeEach(function(done){
-            loadFeed(0, function(){
-                existingFeedEntry = document.querySelector('.entry-link').href;
-                loadFeed(1, function(){
-                    newFeedEntry = document.querySelector('.entry-link').href;   
+            loadFeed(1, function(){
+                newFeedEntry = document.querySelector('.entry-link').href;
+                loadFeed(0, function(){
+                    existingFeedEntry = document.querySelector('.entry-link').href;   
                     done();
                 });
             });
@@ -118,8 +118,8 @@ $(function() {
 
         /* This test ensures that when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * It first loads the first feed and stores the first link in the Feed under existingFeedEntry
-         * It then loads the second feed and stores the first link in the Feed under newFeedEntry
+         * It changes the feed selection to load the second feed and stores the first link in the Feed under newFeedEntry
+         * It then changes the feed selection to load the first feed and stores the first link in the Feed under newFeedEntry
          * It then checks to make sure that the links provided by the two feeds are different
          * hence verifying that the content has changed.
          */
